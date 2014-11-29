@@ -1,68 +1,47 @@
 /* jshint node:true */
 
 var argv = require('yargs').argv;
-var cheerio = require('cheerio');
-var resolve = require('url').resolve;
+var orbweaver = require('./lib/orbweaver.js');
+var lodash = require('lodash');
+var http = require('http');
 var _ = require('lodash');
-var request = require('request');
-var async = require('async');
-var quote = require('regexp-quote');
 
-if (!argv._[0]) {
+var root = argv._[0];
+
+if (!root) {
   usage();
 }
 
-var seen = {};
+var options = {
+  ignoreStatic: argv['ignore-static'],
+  ignoreExtensions: argv['ignore-extensions'],
+  ignore: argv['ignore'],
+  parallel: argv['parallel'],
+  timeout: argv['timeout'],
+  limit: argv['limit'],
+  random: argv['random'],
+  interval: argv['interval'],
+  metrics: argv['metrics']
+};
 
-var queue = async.queue(crawl, argv.parallel || 6);
-var root = argv._[0];
-push(root);
 
-function push(url) {
-  // Trying to combat stack crashes
-  setImmediate(function() {
-    queue.push(url);
-  });
+var users = argv.users || 1;
+
+if (users > 5) {
+  // Should look like separate machines
+  http.globalAgent.maxSockets = users;
 }
 
-function crawl(url, callback) {
-  setImmediate(function() {
-    console.log(url);
-    return request(url, function(err, response, body) {
-      if (err) {
-        return callback(null);
-      }
-      if (response.statusCode >= 400) {
-        return callback(null);
-      }
-      var $ = cheerio.load(body);
-      var links = $('[href]');
-      _.each(links, function(link) {
-        var href = $(link).attr('href');
-        href = resolve(root, href);
-        if (argv.ignore) {
-          if (href.match(new RegExp(argv.ignore))) {
-            return;
-          }
-        }
-        href = href.replace(/\#.*$/, '');
-        if (href.match(/\.(gif|jpg|png|css|js|ico|pdf|xls|xlsx|doc|docx|ppt|pptx)$/)) {
-          return;
-        }
-        if (!href.match(new RegExp('^' + quote(root)))) {
-          // Do not follow external links
-          return;
-        }
-        if (!_.has(seen, href)) {
-          seen[href] = true;
-          push(href);
-        }
-      });
-      return callback(null);
-    }).setMaxListeners(20);
+var i;
+for (i = 0; (i < users); i++) {
+  var _options = _.clone(options);
+  _options.id = i;
+  orbweaver(root, _options, function() {
+    console.log('* session ended');
   });
 }
 
 function usage() {
-  console.error('Usage: orbweaver URL');
+  console.log('Usage: orbweaver http://example.com [--parallel=6] [--ignore-static] [--ignore-extensions=gif,jpg,png,js,css] [--ignore=regexp] [--timeout=60000]');
+  process.exit(1);
 }

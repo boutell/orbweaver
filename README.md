@@ -96,8 +96,6 @@ orbweaver http://mysite.example.com --interval=500-2000 --metrics --limit=20 --p
 
 "What's the difference betwen `parallel` and `users`?" Each "user" crawls the site separately, so two users may fetch the same page. Each user counts toward its own limit. For making sitemaps, use `parallel`. For simulating traffic load from actual people, use `users`.
 
-That will hit the site `mysite.example.com` with the requests that are logged in the existing server log file `/path/to/access.log`.
-
 ## Other options
 
 `--ignore-static` is based on our own list of file extensions. You can specify your own with `--ignore-extensions`:
@@ -111,17 +109,6 @@ Or specify a regular expression that tests the entire URL with `--ignore`:
 These options cannot be combined, so if you wish to use `--ignore` take care to match everything you don't want.
 
 `--timeout` specifies the timeout in milliseconds for each request and defaults to `60000` (one minute).
-
-
-## Options
-
-If your log file is from an extremely active site, you may need to send more than 200 simultaneous requests to accurately simulate it. `--max-sockets=500` will let you send up to 500 requests at a time, rather than the default of 200.
-
-You may want to skip sending requests for certain file extensions. Use `--ignore-extensions=gif,jpg,png` to do that. In this example we ignore those three extensions only.
-
-For convenience, `--ignore-static` is equivalent to `--ignore-extensions=gif,jpg,png,js,xlx,pptx,docx,css,ico,pdf`.
-
-The default timeout is 60000 milliseconds (60 seconds). You can change it with `--timeout=20000`.
 
 ## holodeck
 

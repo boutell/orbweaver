@@ -94,7 +94,9 @@ How about 100 people?
 orbweaver http://mysite.example.com --interval=500-2000 --metrics --limit=20 --parallel=1 --users=100
 ```
 
-"What's the difference betwen `parallel` and `users`?" Each "user" crawls the site separately, so two users may fetch the same page. Each user counts toward its own limit. For making sitemaps, use `parallel`. For simulating traffic load from actual people, use `users`.
+## "parallel" versus "users"
+
+Each "user" crawls the site separately, so two users may fetch the same page. Each user counts toward its own limit. For making sitemaps, use the default setting, `--parallel=6`. For simulating traffic load from actual people, use `--users=n`, and set `--parallel=1`.
 
 ## Other options
 

@@ -4,7 +4,7 @@
 
 <div><img src="https://raw.githubusercontent.com/punkave/orbweaver/master/orbweaver-small.jpg" /></div>
 
-A simple webcrawler. orbweaver prints out the URLs it finds on your site, crawling pages in parallel for speed. orbweaver can also simulate many separate website visitors at once, as a load-testing tool.
+A simple webcrawler. `orbweaver` prints out the URLs it finds on your site, crawling pages in parallel for speed. `orbweaver` can also simulate many separate website visitors at once, as a load-testing tool.
 
 ## Install
 

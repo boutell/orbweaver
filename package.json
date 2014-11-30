@@ -21,12 +21,15 @@
     "url": "https://github.com/punkave/orbweaver"
   },
   "keywords": [
-    "webcrawler"
+    "webcrawler", "webspider", "spider", "crawler", "load testing", "load tester", "siege", "traffic"
   ],
   "author": "P'unk Avenue LLC",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/punkave/orbweaver/issues"
   },
-  "homepage": "https://github.com/punkave/orbweaver"
+  "homepage": "https://github.com/punkave/orbweaver",
+  "bin": {
+    "orbweaver": "./bin/orbweaver"
+  }
 }

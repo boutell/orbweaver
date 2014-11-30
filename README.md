@@ -2,7 +2,7 @@
 
 <a href="http://apostrophenow.org/"><img src="https://raw.github.com/punkave/orbweaver/master/logos/logo-box-madefor.png" align="right" /></a>
 
-<div><img src="https://raw.github.com/punkave/orbweaver/master/orbweaver.jpg" /></div>
+<div><img src="https://raw.githubusercontent.com/punkave/orbweaver/master/orbweaver-small.jpg" /></div>
 
 A simple webcrawler. `orbweaver` prints out the URLs it finds on your site, crawling pages in parallel for speed. `orbweaver` can also simulate many separate website visitors at once, as a load-testing tool.
 

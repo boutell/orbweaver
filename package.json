@@ -1,6 +1,6 @@
 {
   "name": "orbweaver",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A simple webcrawler that prints out the URLs of the pages it encounters. Runs in parallel, up to a limit you specify.",
   "main": "app.js",
   "dependencies": {

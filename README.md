@@ -130,6 +130,10 @@ Also check out [holodeck](http://github.com/punkave/holodeck), which replays the
 
 ## Changelog
 
+0.1.2: set `main` to `lib/orbweaver.js` so the API can be used properly.
+
+0.1.1: added `filterAttributes` option for those using the API who want to see what's going on in documents.
+
 0.1.0: initial release.
 
 ## About P'unk Avenue and Apostrophe

@@ -53,15 +53,15 @@ This makes a great sitemap, but I want to know how fast the site is responding a
 orbweaver http://mysite.example.com --metrics --ignore-static
 ```
 
-Output:
+Output (notice the referring URLs on the left, useful if there are 404's):
 
 ```
-http://mysite.example.com: 200 (320ms)
-http://mysite.example.com/about: 200 (325ms)
-http://mysite.example.com/products: 200 (310ms)
-http://mysite.example.com/services: (200ms)
-http://mysite.example.com/blog: (1050ms)
-http://mysite.example.com/blog/2014/01/01/our-new-product-launch: 200 (150ms)
+* -> http://mysite.example.com: 200 (320ms)
+http://mysite.example.com -> http://mysite.example.com/about: 200 (325ms)
+http://mysite.example.com -> http://mysite.example.com/products: 200 (310ms)
+http://mysite.example.com -> http://mysite.example.com/services: (200ms)
+http://mysite.example.com -> http://mysite.example.com/blog: (1050ms)
+http://mysite.example.com/blog -> http://mysite.example.com/blog/2014/01/01/our-new-product-launch: 200 (150ms)
 ```
 
 Great, but I want to test just one page at a time, instead of six at once.
@@ -129,6 +129,8 @@ Also check out [holodeck](http://github.com/punkave/holodeck), which replays the
 * `orbweaver` will never leave the site you point it to. An option to do so might be nice.
 
 ## Changelog
+
+0.1.3: `--metrics` output includes referring URLs so you can do more with 404's. Also, fixed a bug in which entities in URLs were not decoded, leading to false 404's on some URLs with query strings.
 
 0.1.2: set `main` to `lib/orbweaver.js` so the API can be used properly.
 

@@ -128,6 +128,8 @@ Also check out [holodeck](http://github.com/punkave/holodeck), which replays the
 
 ## Changelog
 
+0.1.4: removed arachnophobia-triggering photo.
+
 0.1.3: `--metrics` output includes referring URLs so you can do more with 404's. Also, fixed a bug in which entities in URLs were not decoded, leading to false 404's on some URLs with query strings.
 
 0.1.2: set `main` to `lib/orbweaver.js` so the API can be used properly.
